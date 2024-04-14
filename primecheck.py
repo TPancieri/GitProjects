@@ -1,27 +1,3 @@
-# def greet():
-#     print("Hello, world!")
-#     print("I am a Python program.")
-#     print("My name is py.")
-
-# greet()
-
-# def greet_with_input(name):
-#     print(f"Hello {name}")
-#     print("I am a Python program.")
-#     print("My name is py.")
-
-# greet_with_input("Alice")
-# greet_with_input("Bob")
-# greet_with_input("Carol")
-
-# def greet_with(name,location):
-#     print(f"Hello {name} from {location}")
-#     print("I am a Python program.")
-#     print("My name is py.")
-
-# greet_with(name="Alice",location="USA")
-# greet_with("Bob","UK")
-
 def is_prime(number):
   """
   Check if a number is prime.
