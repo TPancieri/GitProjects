@@ -28,9 +28,9 @@ def calculate(number1, operator, number2) -> typing.Union[int, float]:
 def main():
     while True:
         try:
-            number1 = int(input("What's the first number?"))
+            number1 = float(input("What's the first number?"))
             operator = input("What's the operator? (+, -, *, /)")
-            number2 = int(input("What's the second number?"))
+            number2 = float(input("What's the second number?"))
 
             if operator not in "+-*/":
                 raise ValueError("Invalid operator!")
