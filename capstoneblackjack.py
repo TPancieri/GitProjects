@@ -40,6 +40,18 @@ def hand_value(card_list):
         card_count += card_value(card, card_list)
     return card_count
 
+def print_final_hands_and_result(player_hand, dealer_hand, result):
+    """
+    Prints the final hands of the player and the dealer, and the result of the game
+    
+    :param player_hand: the player's final hand
+    :param dealer_hand: the dealer's final hand
+    :param result: the result of the game, either 'player wins', 'dealer wins', or 'draw'
+    """
+    print(f"Your final hand is: {player_hand}")
+    print(f"Dealer's final hand is:{dealer_hand} ")
+    print(result)
+
 
 class BlackjackGame:
     """
@@ -96,29 +108,24 @@ class BlackjackGame:
                 
                 #Checks if player hand value is above the limit (21)
                 if hand_value(self.player_hand) > 21:
-                    print(f"Your final hand: {self.player_hand}")
-                    print(f"Dealer's final hand: {self.dealer_hand}")
-                    print("\nYou busted! Dealer wins")
-                    break
+                    result = "\nYou busted! Dealer wins"
+
                 
                 #Checks who was the highest score bellow 21, between dealer and player    
                 elif hand_value(self.dealer_hand) < hand_value(self.player_hand) <= 21:
-                    print(f"Your final hand: {self.player_hand}")
-                    print(f"Dealer's final hand: {self.dealer_hand}")
-                    print("\nYou win!")
-                    break
+                    result = "\nYou win!"
+
                 
                 elif hand_value(self.dealer_hand) == hand_value(self.player_hand):
-                    print(f"Your final hand: {self.player_hand}")
-                    print(f"Dealer's final hand: {self.dealer_hand}")
-                    print("\nDraw!")
-                    break
+                    result = "\nDraw!"
+
                     
                 else:
-                    print(f"Your final hand: {self.player_hand}")
-                    print(f"Dealer's final hand: {self.dealer_hand}")
                     print("\nDealer wins.")
-                    break
+                
+                print_final_hands_and_result(self.player_hand, self.dealer_hand, result)
+                
+                play_game = input("\nDo you want to play another game? Type 'y' or 'n': ").lower()
                 
         print("Thanks for playing!")
             
