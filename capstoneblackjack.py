@@ -2,10 +2,9 @@ import random
 
 # list for card numbers
 CARD_NUMBERS = ['Ace', '2', '3', '4', '5','6','7','8','9','10','Jack','Queen','King']
+random.shuffle(CARD_NUMBERS)
 # create a list of tuples, where each tuple contains a single card number, using a list comprehension
-SHUFFLED_DECK = [(card) for card in CARD_NUMBERS]
-
-#shuffles cards
+SHUFFLED_DECK = [(card) for card in CARD_NUMBERS] * 4
 random.shuffle(SHUFFLED_DECK)
 
 def card_value (card, selected_hand) ->int:
