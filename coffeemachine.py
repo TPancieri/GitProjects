@@ -64,10 +64,15 @@ def check_resources(drink):
     current_amount: dict = {}
     for item, quantity in resources.items():
         current_amount[item] = quantity
+
+    return needed_amount, current_amount
     # Up to here we have two dict, current_amount and needed_amount with the keys being the ingredient names and
     # the values being the amount (needed or in stock)
 
     # Now we compare to see if there are enough ingredients in the machine to make the drink
+
+
+def compare_ingredients(needed_amount, current_amount):
     for key in needed_amount.keys():
         item_needed = needed_amount[key]
         item_stocked = current_amount[key]
@@ -121,18 +126,19 @@ def check_transaction(amount_paid, drink_price):
 
 # Make coffe
 # ->If transaction is successful and there are enough resources
-#TODO fix this function, can copy over some of the code from the check resources
+# TODO fix this function, can copy over some of the code from the check resources
 def make_coffe(drink, payment):
     if payment:
         # ->Make the drink the user selected
         # ->Then the ingredients used should be deducted from the coffe machine resources
-        to_remove = {}
-        for item, values in MENU[drink]:
-            to_remove[item] = values
-        i = 0
-        resources["water"] = resources["water"] - to_remove["water"]
-        resources["milk"] = resources["milk"] - to_remove["milk"]
-        resources["coffee"] = resources["coffee"] - to_remove["coffe"]
+        expended_resource, current_resource = check_resources(drink)
+        new_values = {}
+        for key in expended_resource.keys():
+            value1 = expended_resource[key]
+            value2 = current_resource[key]
+            new_values[key] = value2 - value1
+        # actualize the resources dict
+        resources.update(new_values)
         # ->Once resources have been deducted, tell the user "Here is you {drink}. Enjoy!"
         print(f"Here is your {drink}. Enjoy!")
 
@@ -142,7 +148,8 @@ def drink_menu():
     drink_choice = input("What would you like? (espresso/latte/cappuccino): ").lower()
     # -> Check the user input to see what's next.
     if drink_choice in MENU:
-        enough = check_resources(drink_choice)
+        needed, stock = check_resources(drink_choice)
+        enough = compare_ingredients(needed, stock)
         drink_info = MENU[drink_choice]
         for key, value in drink_info.items():
             if key == 'cost':
@@ -159,9 +166,13 @@ def drink_menu():
                 make_coffe(drink_choice, payment_accepted)
     elif drink_choice == "off":
         turn_off()
+    elif drink_choice == "report":
+        report()
     else:
         print("Please choose a valid option")
     # ->Prompt should show everytime an action is completed
 
 
-drink_menu()
+stop = 1
+while stop != 0:
+    drink_menu()
