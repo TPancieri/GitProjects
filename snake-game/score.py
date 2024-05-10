@@ -11,7 +11,7 @@ class Score(Turtle):
         self.hideturtle()
         self.setpos(0, 350)
         self.score = 0
-        file = open("data.txt", mode="r")
+        file = open("GitProjects\snake-game\data.txt", mode="r")
         self.high_score = file.read()
         file.close()
         self.write(arg=f"Score : {self.score} High Score : {self.high_score}", move=False, align=ALIGNMENT, font=FONT)
@@ -27,7 +27,7 @@ class Score(Turtle):
     def reset_score(self) -> None:
         if self.score >int(self.high_score):
             self.high_score = self.score
-            with open("data.txt", mode="w") as file:
+            with open("GitProjects\snake-game\data.txt", mode="w") as file:
                 file.write(str(self.high_score))
         self.score = 0
         self.refresh_score()

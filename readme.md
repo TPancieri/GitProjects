@@ -1,2 +1,1 @@
-Hello, this project teaches how to use git
-This is a modification
+Just a bunch of small python projects bundled together
